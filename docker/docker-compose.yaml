@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  ort-android-build:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ort_android_build
+    volumes:
+      - ./../:/workspace
+      - build:/build
+    working_dir: /workspace
+    tty: true
+    environment:
+      - ANDROID_NDK_ROOT=/opt/android-ndk
+
+volumes:
+  build:

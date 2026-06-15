@@ -60,6 +60,10 @@ file(GLOB onnxruntime4j_native_src
     )
 # Build the JNI library
 onnxruntime_add_shared_library_module(onnxruntime4j_jni ${onnxruntime4j_native_src})
+target_link_options(onnxruntime4j_jni PRIVATE
+  "-Wl,-z,max-page-size=16384"
+  "-Wl,-z,common-page-size=16384"
+)
 set_property(TARGET onnxruntime4j_jni PROPERTY CXX_STANDARD 11)
 
 # depend on java sources. if they change, the JNI should recompile
